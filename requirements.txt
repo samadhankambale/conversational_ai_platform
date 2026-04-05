@@ -1,0 +1,12 @@
+# fastapi
+# uvicorn
+# pydantic
+# python-dotenv
+# openai
+# qdrant-client
+# numpy
+
+# python-jose
+# passlib[bcrypt]
+# sqlalchemy
+sentence-transformers
