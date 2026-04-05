@@ -171,9 +171,9 @@ Header: Authorization: Bearer <token>
   * `content`
 * Ensures:
 
-  * ✔ User isolation (JWT-based)
-  * ✔ Persistent conversation state
-  * ✔ Secure multi-user access
+  * User isolation (JWT-based)
+  * Persistent conversation state
+  * Secure multi-user access
 
 
 ##  RAG Implementation
