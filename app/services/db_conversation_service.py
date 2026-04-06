@@ -31,6 +31,14 @@ def get_history(db: Session, user_id: str, session_id: str):
 
     return [{"role": m.role, "content": m.content} for m in messages]
 
+def get_user_sessions(db: Session, user_id: str):
+    sessions = db.query(ConversationMessage.session_id)\
+        .filter(ConversationMessage.user_id == user_id)\
+        .distinct()\
+        .all()
+
+    return [s[0] for s in sessions]
+
 
 
 def delete_session(db: Session, user_id: str, session_id: str):

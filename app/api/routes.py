@@ -10,6 +10,7 @@ from app.api.deps import get_current_user
 from app.core.exceptions import BadRequestException
 from fastapi import HTTPException
 from app.services.db_conversation_service import delete_session
+from app.services.db_conversation_service import get_user_sessions
 
 router = APIRouter()
 
@@ -28,8 +29,9 @@ def chat(
     user=Depends(get_current_user)
 ):
     try:
-        reply = generate_response(db, req.session_id, user, req.message)
-        return ChatResponse(response=reply)
+        
+        reply = generate_response(db, None, user, req.message)
+        return {"response": reply}
     except Exception as e:
         print(f"Chat error: {e}")
         raise BadRequestException(detail="Failed to generate response")
@@ -63,6 +65,7 @@ def delete_conversation(
     return {"message": "Conversation deleted successfully"}
 
 
+
 @router.get("/analytics/{session_id}", tags=["Conversation"])
 def analytics(
     session_id: str,
@@ -75,3 +78,12 @@ def analytics(
         raise HTTPException(status_code=404, detail="Conversation not found")
 
     return analyze_conversation(history)
+
+
+
+@router.get("/sessions", tags=["Conversation"])
+def get_sessions(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user)
+):
+    return get_user_sessions(db, user)
