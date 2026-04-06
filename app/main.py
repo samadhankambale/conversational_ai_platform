@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     init_collection()
     yield
 
-app = FastAPI(title="Conversational_AI_Platform")
+app = FastAPI(title="Conversational_AI_Platform" , lifespan=lifespan)
 
 app.include_router(auth_router)
 app.include_router(router)
