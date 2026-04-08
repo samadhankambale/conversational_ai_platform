@@ -1,7 +1,6 @@
 import uuid
 from sqlalchemy.orm import Session
 from openai import OpenAI
-
 from app.core.config import OPENAI_API_KEY, OPENAI_BASE_URL
 from app.services.personalization_service import personalize_prompt
 from app.services.repair_service import repair_conversation

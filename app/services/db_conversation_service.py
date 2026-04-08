@@ -23,7 +23,7 @@ def save_message(db: Session, user_id: str, session_id: str, role: str, content:
 def get_history(db: Session, user_id: str, session_id: str):
     messages = db.query(ConversationMessage)\
         .filter(
-            ConversationMessage.user_id == user_id,      # ✅ FILTER USER
+            ConversationMessage.user_id == user_id,   
             ConversationMessage.session_id == session_id
         )\
         .order_by(ConversationMessage.id)\

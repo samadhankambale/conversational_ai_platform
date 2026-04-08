@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-
 from app.db.database import SessionLocal
 from app.db.models import User
 from app.schemas.auth import RegisterRequest, LoginRequest
